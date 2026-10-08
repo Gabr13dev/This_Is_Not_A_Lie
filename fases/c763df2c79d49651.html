@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A máquina</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/temas/enigma.css">
+  <script src="../js/arg.js"></script>
+</head>
+<body data-fase="5" class="tema-enigma">
+  <main>
+    <div class="fase-num">FASE V</div>
+    <h1 class="titulo">A máquina</h1>
+
+    <p class="dica digitar">Sherlock decifrava códigos nos livros. Mas, na vida real, um grupo de ingleses teve que decifrar uma máquina alemã durante a Segunda Guerra. Se não conseguissem, milhares de pessoas morreriam no mar. A máquina chamada "Enigma" foi um dos maiores mistérios do século 20.</p>
+
+    <div class="maquina" aria-hidden="true">
+      <div class="tampa">
+        <div class="rotores">
+          <div class="rotor" id="r0">A</div>
+          <div class="rotor" id="r1">D</div>
+          <div class="rotor" id="r2">U</div>
+        </div>
+        <div class="lampadas" id="lampadas"></div>
+        <div class="fita" id="fita"></div>
+      </div>
+    </div>
+
+    <p class="pergunta">Ela não escondia as mensagens. Ela as transformava. Como se chama isso?</p>
+
+    <form id="form-resposta" autocomplete="off">
+      <input type="text" placeholder="resposta" autofocus aria-label="Resposta">
+      <button type="submit">ENVIAR</button>
+    </form>
+    <p id="mensagem" class="mensagem"></p>
+
+    <p class="dica-extra" data-erros="3" hidden>Palavras embaralhadas, mas ainda palavras. A informação está lá, mas só alguns podem ler.</p>
+  </main>
+
+  <script>
+    // Uma Enigma de verdade (rotores I, II, III e refletor B), só pra decorar:
+    // cada letra digitada acende uma lâmpada diferente e os rotores giram.
+    (function () {
+      const A = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const ROTORES = [
+        { fio: "EKMFLGDQVZNTOWYHXUSPAIBRCJ", entalhe: "Q" },
+        { fio: "AJDKSIRUXBLHWTMCQGZNPYFVOE", entalhe: "E" },
+        { fio: "BDFHJLCPRTXVZNYEIWGAKMUSQO", entalhe: "V" },
+      ];
+      const REFLETOR = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
+      const pos = [0, 3, 20]; // A D U
+      const LINHAS = ["QWERTZUIO", "ASDFGHJK", "PYXCVBNML"];
+      const FRACA = "I";
+
+      const painel = document.getElementById("lampadas");
+      const lampadas = {};
+      LINHAS.forEach((l) => {
+        const linha = document.createElement("div");
+        linha.className = "linha";
+        for (const letra of l) {
+          const el = document.createElement("div");
+          el.className = "lampada" + (letra === FRACA ? " fraca" : "");
+          el.textContent = letra;
+          lampadas[letra] = el;
+          linha.appendChild(el);
+        }
+        painel.appendChild(linha);
+      });
+
+      const rotoresEl = [0, 1, 2].map((i) => document.getElementById("r" + i));
+      const fita = document.getElementById("fita");
+
+      function girar() {
+        const [esq, meio, dir] = ROTORES;
+        const meioNoEntalhe = A[pos[1]] === meio.entalhe;
+        const dirNoEntalhe = A[pos[2]] === dir.entalhe;
+        if (meioNoEntalhe) { pos[0] = (pos[0] + 1) % 26; pos[1] = (pos[1] + 1) % 26; }
+        else if (dirNoEntalhe) pos[1] = (pos[1] + 1) % 26;
+        pos[2] = (pos[2] + 1) % 26;
+        rotoresEl.forEach((el, i) => {
+          if (el.textContent !== A[pos[i]]) {
+            el.textContent = A[pos[i]];
+            el.classList.add("girou");
+            setTimeout(() => el.classList.remove("girou"), 150);
+          }
+        });
+      }
+
+      const ida = (r, c, p) => (A.indexOf(r.fio[(c + p) % 26]) - p + 26) % 26;
+      const volta = (r, c, p) => (r.fio.indexOf(A[(c + p) % 26]) - p + 26) % 26;
+
+      function cifrar(letra) {
+        girar();
+        let c = A.indexOf(letra);
+        for (let i = 2; i >= 0; i--) c = ida(ROTORES[i], c, pos[i]);
+        c = A.indexOf(REFLETOR[c]);
+        for (let i = 0; i <= 2; i++) c = volta(ROTORES[i], c, pos[i]);
+        return A[c];
+      }
+
+      let apagar;
+      let saida = "";
+      function acender(letra) {
+        Object.values(lampadas).forEach((l) => l.classList.remove("acesa"));
+        lampadas[letra].classList.add("acesa");
+        clearTimeout(apagar);
+        apagar = setTimeout(() => lampadas[letra].classList.remove("acesa"), 500);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const input = document.querySelector("#form-resposta input");
+        let anterior = "";
+        input.addEventListener("input", () => {
+          const atual = input.value;
+          if (atual.length > anterior.length) {
+            const novas = atual.slice(anterior.length)
+              .normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase().replace(/[^A-Z]/g, "");
+            for (const l of novas) {
+              const cifrada = cifrar(l);
+              acender(cifrada);
+              saida += cifrada;
+            }
+            fita.textContent = saida.replace(/(.{5})/g, "$1 ").trim();
+          }
+          anterior = atual;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

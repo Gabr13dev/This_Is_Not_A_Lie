@@ -1,0 +1,158 @@
+/* Tema: máquina Enigma — caixa de madeira, painel de lâmpadas, rotores */
+@import url("https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&display=swap");
+
+body.tema-enigma {
+  --fundo: #11120f;
+  --texto: #d8d4c4;
+  --texto-fraco: #8b8775;
+  --erro: #ff8a6b;
+  --madeira: #3a2a1c;
+  --madeira-clara: #57402a;
+  --latao: #b8955a;
+  --painel: #1b1b18;
+  --lampada: #3a3a33;
+  --acesa: #ffcf6a;
+  --fonte: "IBM Plex Mono", "Courier New", monospace;
+  --fonte-titulo: "Allerta Stencil", "Arial Black", sans-serif;
+
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(184, 149, 90, 0.12), transparent 55%),
+    var(--fundo);
+  text-shadow: none;
+}
+body.tema-enigma::before { opacity: 0.5; }
+
+.tema-enigma main { max-width: 640px; }
+
+.tema-enigma .fase-num {
+  font-family: var(--fonte-titulo);
+  color: var(--latao);
+  letter-spacing: 0.5em;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+.tema-enigma .titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 7vw, 2.6rem);
+  letter-spacing: 0.15em;
+  margin: 0 0 1.4rem;
+  text-transform: uppercase;
+}
+.tema-enigma .dica {
+  font-size: 1rem;
+  line-height: 1.7;
+  text-align: left;
+  margin: 0 0 1.8rem;
+}
+
+/* a máquina */
+.tema-enigma .maquina {
+  background:
+    repeating-linear-gradient(92deg, rgba(0,0,0,0.12) 0 3px, transparent 3px 11px),
+    linear-gradient(180deg, var(--madeira-clara), var(--madeira));
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 1.8rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 0 0 2px rgba(0,0,0,0.3);
+}
+.tema-enigma .tampa {
+  background: var(--painel);
+  border-radius: 6px;
+  padding: 16px 10px 18px;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.tema-enigma .rotores {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.tema-enigma .rotor {
+  width: 38px;
+  height: 44px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #8d8a80, #e6e1d2 35%, #e6e1d2 65%, #8d8a80);
+  color: #1b1b18;
+  font-family: var(--fonte);
+  font-weight: 600;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--latao);
+  transition: transform 0.15s;
+}
+.tema-enigma .rotor.girou { transform: translateY(-3px); }
+
+.tema-enigma .lampadas { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.tema-enigma .linha { display: flex; gap: clamp(4px, 1.4vw, 10px); }
+.tema-enigma .lampada {
+  width: clamp(26px, 8vw, 40px);
+  height: clamp(26px, 8vw, 40px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #4d4d44, var(--lampada));
+  color: #6f6d60;
+  font-family: var(--fonte);
+  font-weight: 600;
+  font-size: clamp(0.75rem, 3.2vw, 1rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 2px #26261f;
+  transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+}
+.tema-enigma .lampada.acesa {
+  background: radial-gradient(circle at 40% 35%, #fff4cf, var(--acesa) 55%, #c98a1a);
+  color: #3a2400;
+  box-shadow: 0 0 18px 4px rgba(255, 207, 106, 0.55);
+}
+/* uma lâmpada que nunca apaga totalmente */
+.tema-enigma .lampada.fraca {
+  background: radial-gradient(circle at 40% 35%, #5e5640, #433f31);
+  color: #a39470;
+  box-shadow: inset 0 0 0 2px #26261f, 0 0 6px rgba(255, 207, 106, 0.12);
+}
+
+.tema-enigma .fita {
+  margin-top: 16px;
+  min-height: 2.2em;
+  background: #e9e3cf;
+  color: #2b2418;
+  font-family: var(--fonte);
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  padding: 8px 12px;
+  text-align: left;
+  border-radius: 2px;
+  overflow-wrap: anywhere;
+}
+.tema-enigma .fita:empty::before { content: "digite e veja..."; color: #9a927c; letter-spacing: 0.05em; font-style: italic; }
+
+.tema-enigma .pergunta { font-size: 1.1rem; font-style: italic; margin: 0 0 1.4rem; }
+
+.tema-enigma input {
+  font-family: var(--fonte);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border: none;
+  border-bottom: 2px solid var(--texto-fraco);
+  background: transparent;
+  color: var(--texto);
+  text-align: center;
+}
+.tema-enigma input:focus { border-bottom-color: var(--acesa); box-shadow: none; }
+.tema-enigma input::placeholder { color: var(--texto-fraco); }
+
+.tema-enigma button {
+  font-family: var(--fonte-titulo);
+  border: 1px solid var(--latao);
+  color: var(--latao);
+  letter-spacing: 0.1em;
+}
+.tema-enigma button:hover { background: var(--latao); color: var(--fundo); }
+
+.tema-enigma .mensagem.certo { color: var(--acesa); }
+.tema-enigma .dica-extra { font-style: italic; border-top-color: #3a3a33; }
+.tema-enigma ::selection { background: var(--acesa); color: var(--fundo); }

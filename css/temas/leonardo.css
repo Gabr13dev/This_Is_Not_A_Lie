@@ -1,0 +1,111 @@
+/* Tema: caderno de Leonardo da Vinci — papel envelhecido, tinta sépia, esboços */
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap");
+
+body.tema-leonardo {
+  --fundo: #e9d8b4;
+  --texto: #4a2f17;
+  --texto-fraco: #8c6a44;
+  --erro: #8a2a14;
+  --tinta: #5b3a1c;
+  --fonte: "IM Fell English", Georgia, serif;
+  --fonte-titulo: "IM Fell English SC", Georgia, serif;
+
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(110, 70, 30, 0.35) 100%),
+    radial-gradient(circle at 15% 25%, rgba(150, 100, 50, 0.15), transparent 30%),
+    radial-gradient(circle at 80% 75%, rgba(150, 100, 50, 0.12), transparent 35%),
+    var(--fundo);
+  text-shadow: none;
+}
+body.tema-leonardo::before { display: none; }
+
+.tema-leonardo main { max-width: 620px; position: relative; }
+
+/* esboços ao fundo */
+.tema-leonardo .esboco {
+  position: fixed;
+  pointer-events: none;
+  color: var(--tinta);
+  opacity: 0.22;
+}
+.tema-leonardo .esboco-homem { width: 340px; right: -90px; top: -40px; }
+.tema-leonardo .esboco-engrenagem { width: 230px; left: -60px; bottom: -40px; }
+
+.tema-leonardo .fase-num {
+  font-family: var(--fonte-titulo);
+  color: var(--texto-fraco);
+  letter-spacing: 0.5em;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+
+.tema-leonardo .titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 6vw, 2.3rem);
+  letter-spacing: 0.06em;
+  color: var(--tinta);
+  margin: 0 0 1.6rem;
+}
+
+.tema-leonardo .dica {
+  font-size: 1.25rem;
+  line-height: 1.55;
+  margin: 0 0 1.6rem;
+}
+
+/* página do caderno com o texto espelhado */
+.tema-leonardo .folha {
+  position: relative;
+  border-top: 1px solid rgba(91, 58, 28, 0.35);
+  border-bottom: 1px solid rgba(91, 58, 28, 0.35);
+  padding: 18px 4px;
+  margin-bottom: 2rem;
+}
+.tema-leonardo .espelhado {
+  display: block;
+  width: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.tema-leonardo input {
+  font-family: var(--fonte-titulo);
+  letter-spacing: 0.12em;
+  font-size: 1.2rem;
+  border: none;
+  border-bottom: 2px solid var(--texto-fraco);
+  background: transparent;
+  color: var(--texto);
+  text-align: center;
+}
+.tema-leonardo input:focus { border-bottom-color: var(--tinta); box-shadow: none; }
+.tema-leonardo input::placeholder { color: var(--texto-fraco); }
+
+.tema-leonardo button {
+  font-family: var(--fonte-titulo);
+  font-size: 1.05rem;
+  border: 1px solid var(--tinta);
+  color: var(--tinta);
+  letter-spacing: 0.08em;
+}
+.tema-leonardo button:hover { background: var(--tinta); color: var(--fundo); }
+
+.tema-leonardo .mensagem { font-style: italic; font-size: 1.1rem; }
+.tema-leonardo .dica-extra { font-style: italic; font-size: 1.15rem; border-top-color: var(--texto-fraco); }
+
+.tema-leonardo ::selection { background: var(--tinta); color: var(--fundo); }
+
+@media (max-width: 600px) {
+  .tema-leonardo .esboco-homem { width: 240px; right: -110px; top: -30px; }
+  .tema-leonardo .esboco-engrenagem { width: 170px; left: -70px; }
+}
+
+/* esboço pequeno no canto da folha */
+.tema-leonardo .mini-esboco {
+  display: block;
+  width: 110px;
+  margin: 6px 0 0 auto;
+  color: var(--tinta);
+  opacity: 0.55;
+}

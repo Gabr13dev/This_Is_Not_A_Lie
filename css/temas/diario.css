@@ -1,0 +1,163 @@
+/* Tema: diário do explorador — capa de couro, página pautada em branco que vira */
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Lora:ital@0;1&display=swap");
+
+body.tema-diario {
+  --fundo: #2a1f17;
+  --texto: #eadfca;
+  --texto-fraco: #a8957a;
+  --erro: #ff9c80;
+  --papel: #f5eedc;
+  --pauta: rgba(90, 120, 160, 0.25);
+  --margem: rgba(190, 70, 60, 0.35);
+  --couro: #5b3522;
+  --fita: #8e1f2a;
+  --fonte: "Lora", Georgia, serif;
+  --fonte-mao: "Caveat", "Comic Sans MS", cursive;
+
+  background:
+    radial-gradient(ellipse at 50% 40%, #3b2b1f 0%, transparent 70%),
+    var(--fundo);
+  text-shadow: none;
+}
+body.tema-diario::before { display: none; }
+
+.tema-diario main { max-width: 560px; }
+
+.tema-diario .fase-num {
+  font-family: var(--fonte);
+  color: var(--texto-fraco);
+  letter-spacing: 0.5em;
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+}
+.tema-diario .titulo {
+  font-family: var(--fonte-mao);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 9vw, 3rem);
+  margin: 0 0 1rem;
+}
+.tema-diario .dica {
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 0 1.6rem;
+}
+
+/* o diário: capa de couro com uma página que vira */
+.tema-diario .diario {
+  position: relative;
+  background: linear-gradient(135deg, #6b3f28, var(--couro) 60%, #43271a);
+  border-radius: 6px 12px 12px 6px;
+  padding: 14px 14px 14px 22px;
+  margin: 0 auto 1.4rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 6px 0 10px rgba(0, 0, 0, 0.35);
+  perspective: 1400px;
+}
+.tema-diario .fitinha {
+  position: absolute;
+  top: -6px;
+  right: 46px;
+  width: 16px;
+  height: calc(100% + 34px);
+  background: linear-gradient(90deg, #6e1720, var(--fita) 50%, #6e1720);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 10px), 0 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.tema-diario .pagina {
+  position: relative;
+  height: clamp(340px, 70vw, 420px);
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  transition: transform 1s cubic-bezier(.4,.1,.2,1);
+}
+.tema-diario .pagina.virada { transform: rotateY(-180deg); }
+
+.tema-diario .face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 2px 6px 6px 2px;
+  background:
+    linear-gradient(90deg, transparent 46px, var(--margem) 46px 47.5px, transparent 47.5px),
+    repeating-linear-gradient(180deg, transparent 0 29px, var(--pauta) 29px 30px),
+    var(--papel);
+  background-position: 0 0, 0 40px, 0 0;
+  box-shadow: inset 8px 0 12px -6px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+.tema-diario .verso-falso {
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tema-diario .verso-falso p {
+  font-family: var(--fonte-mao);
+  font-size: 1.7rem;
+  color: #6b5b48;
+  margin: 0;
+  transform: rotate(-4deg);
+}
+
+/* marca d'água no papel */
+.tema-diario .marca {
+  position: absolute;
+  left: 64px;
+  top: 38%;
+  font-family: var(--fonte);
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(120, 100, 70, 0.07);
+  user-select: none;
+}
+.tema-diario .num-pagina {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--fonte-mao);
+  color: #a3927a;
+  font-size: 1.1rem;
+}
+
+.tema-diario .virar {
+  font-family: var(--fonte-mao);
+  font-size: 1.3rem;
+  border: none;
+  background: none;
+  color: var(--texto-fraco);
+  padding: 4px 8px;
+  margin-bottom: 1.6rem;
+}
+.tema-diario .virar:hover { background: none; color: var(--texto); }
+
+.tema-diario input {
+  font-family: var(--fonte-mao);
+  font-size: 1.5rem;
+  border: none;
+  border-bottom: 2px solid var(--texto-fraco);
+  background: transparent;
+  color: var(--texto);
+  text-align: center;
+  padding: 4px 12px;
+}
+.tema-diario input:focus { border-bottom-color: var(--texto); box-shadow: none; }
+.tema-diario input::placeholder { color: var(--texto-fraco); }
+
+.tema-diario #form-resposta button {
+  font-family: var(--fonte-mao);
+  font-size: 1.3rem;
+  border: 1px solid var(--texto-fraco);
+  color: var(--texto);
+  padding: 4px 16px;
+}
+.tema-diario #form-resposta button:hover { background: var(--texto); color: var(--fundo); }
+
+.tema-diario .mensagem { font-family: var(--fonte-mao); font-size: 1.35rem; }
+.tema-diario .dica-extra { font-style: italic; border-top-color: #4a3a2c; }
+.tema-diario ::selection { background: var(--texto); color: var(--fundo); }

@@ -1,0 +1,101 @@
+/* Tema: Roma Antiga — pedra travertina, inscrição em mármore */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap");
+
+body.tema-roma {
+  --fundo: #e8dcc4;
+  --texto: #3b2a1a;
+  --texto-fraco: #8a7558;
+  --erro: #8a2a1a;
+  --pedra: #d6c6a6;
+  --pedra-escura: #b9a582;
+  --ouro: #a07c3c;
+  --fonte: "Cormorant Garamond", Georgia, serif;
+  --fonte-titulo: "Cinzel", "Times New Roman", serif;
+
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 245, 220, 0.8), transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(150, 120, 80, 0.12), transparent 40%),
+    radial-gradient(circle at 85% 60%, rgba(150, 120, 80, 0.10), transparent 35%),
+    var(--fundo);
+  text-shadow: none;
+}
+
+body.tema-roma::before { display: none; }
+
+.tema-roma main { max-width: 600px; }
+
+/* fachada do Coliseu */
+.tema-roma .coliseu {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 1.5rem;
+  height: auto;
+}
+
+.tema-roma .fase-num {
+  font-family: var(--fonte-titulo);
+  color: var(--ouro);
+  letter-spacing: 0.5em;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.tema-roma .titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 5vw, 1.9rem);
+  letter-spacing: 0.12em;
+  margin: 0 0 1.5rem;
+  text-transform: uppercase;
+}
+
+/* placa de mármore com a dica */
+.tema-roma .placa {
+  background: linear-gradient(180deg, #f4ecdb, #e6d9bd);
+  border: 1px solid var(--pedra-escura);
+  box-shadow: inset 0 0 0 6px #efe5cf, inset 0 0 0 7px var(--pedra-escura), 0 6px 18px rgba(60, 40, 20, 0.15);
+  padding: 28px 28px 22px;
+  margin-bottom: 2rem;
+}
+
+.tema-roma .dica {
+  font-size: 1.3rem;
+  font-style: italic;
+  line-height: 1.55;
+  margin: 0 0 1.2rem;
+}
+
+.tema-roma .enigma {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+  letter-spacing: 0.15em;
+  color: var(--texto);
+  margin: 0;
+  user-select: all;
+}
+
+.tema-roma input {
+  font-family: var(--fonte-titulo);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border: none;
+  border-bottom: 2px solid var(--texto-fraco);
+  background: transparent;
+  text-align: center;
+}
+.tema-roma input:focus { border-bottom-color: var(--ouro); box-shadow: none; }
+.tema-roma input::placeholder { color: var(--texto-fraco); }
+
+.tema-roma button {
+  font-family: var(--fonte-titulo);
+  border: 1px solid var(--texto);
+  color: var(--texto);
+  letter-spacing: 0.1em;
+}
+.tema-roma button:hover { background: var(--texto); color: var(--fundo); }
+
+.tema-roma .mensagem { font-family: var(--fonte-titulo); letter-spacing: 0.08em; }
+.tema-roma .dica-extra { font-size: 1.1rem; font-style: italic; border-top-color: var(--pedra-escura); }
+
+.tema-roma ::selection { background: var(--ouro); color: #fff; }

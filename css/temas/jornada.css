@@ -1,0 +1,179 @@
+/* Tema: a jornada — mapa antigo, selos de cada parada, nove espaços para as letras */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap");
+
+body.tema-jornada {
+  --fundo: #101826;
+  --texto: #ece3cc;
+  --texto-fraco: #9aa3b5;
+  --erro: #ffab8f;
+  --ouro: #d9b45f;
+  --papel: #efe3c4;
+  --tinta: #2b2318;
+  --fonte: "Cormorant Garamond", Georgia, serif;
+  --fonte-titulo: "Cinzel", "Times New Roman", serif;
+
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(217, 180, 95, 0.16), transparent 55%),
+    radial-gradient(circle at 50% 60%, #1a2740 0%, var(--fundo) 75%);
+  text-shadow: none;
+}
+body.tema-jornada::before { display: none; }
+
+.tema-jornada main { max-width: 760px; }
+
+.tema-jornada .fase-num {
+  font-family: var(--fonte-titulo);
+  color: var(--ouro);
+  letter-spacing: 0.5em;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+.tema-jornada .titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 6.5vw, 2.6rem);
+  letter-spacing: 0.08em;
+  color: var(--ouro);
+  margin: 0 0 1.2rem;
+}
+.tema-jornada .dica {
+  font-size: 1.3rem;
+  line-height: 1.55;
+  margin: 0 0 2rem;
+}
+
+/* mapa com os selos */
+.tema-jornada .mapa {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(110, 80, 30, 0.3) 100%),
+    repeating-linear-gradient(0deg, transparent 0 39px, rgba(43, 35, 24, 0.07) 39px 40px),
+    repeating-linear-gradient(90deg, transparent 0 39px, rgba(43, 35, 24, 0.07) 39px 40px),
+    var(--papel);
+  color: var(--tinta);
+  border-radius: 6px;
+  padding: 22px 16px;
+  margin-bottom: 1.6rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+.tema-jornada .selos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+  gap: 14px;
+}
+.tema-jornada .selo {
+  display: block;
+  text-decoration: none;
+  color: var(--tinta);
+  background: #fbf5e4;
+  padding: 10px 8px 8px;
+  border: 5px solid #fbf5e4;
+  outline: 2px dotted rgba(43, 35, 24, 0.45);
+  outline-offset: -2px;
+  box-shadow: 0 3px 8px rgba(60, 40, 10, 0.25), inset 0 0 0 1px rgba(43, 35, 24, 0.3);
+  transition: transform 0.15s;
+}
+.tema-jornada .selo:nth-child(odd) { transform: rotate(-1.5deg); }
+.tema-jornada .selo:nth-child(even) { transform: rotate(1.2deg); }
+.tema-jornada .selo:hover { transform: rotate(0) scale(1.04); }
+.tema-jornada .selo .num { font-family: var(--fonte-titulo); font-size: 0.75rem; letter-spacing: 0.2em; color: #8a7553; }
+.tema-jornada .selo .lugar { font-family: var(--fonte-titulo); font-weight: 700; font-size: 0.95rem; margin: 2px 0; }
+.tema-jornada .selo .quem { font-style: italic; font-size: 0.95rem; color: #5c4f3b; }
+
+/* nove espaços para as letras */
+.tema-jornada .espacos {
+  display: flex;
+  justify-content: center;
+  gap: clamp(4px, 1.5vw, 10px);
+  margin: 0 0 1.6rem;
+}
+.tema-jornada .espaco {
+  width: clamp(28px, 8vw, 46px);
+  height: clamp(38px, 10vw, 56px);
+  border-bottom: 3px solid var(--ouro);
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 5vw, 2rem);
+  color: var(--texto);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 4px;
+}
+
+.tema-jornada input {
+  font-family: var(--fonte-titulo);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: none;
+  border-bottom: 2px solid var(--texto-fraco);
+  background: transparent;
+  color: var(--texto);
+  text-align: center;
+}
+.tema-jornada input:focus { border-bottom-color: var(--ouro); box-shadow: none; }
+.tema-jornada input::placeholder { color: var(--texto-fraco); text-transform: none; letter-spacing: 0.05em; }
+
+.tema-jornada button {
+  font-family: var(--fonte-titulo);
+  border: 1px solid var(--ouro);
+  color: var(--ouro);
+  letter-spacing: 0.1em;
+}
+.tema-jornada button:hover { background: var(--ouro); color: var(--fundo); }
+
+.tema-jornada .mensagem { font-family: var(--fonte); font-size: 1.25rem; }
+.tema-jornada .mensagem.certo, .tema-jornada .mensagem.quase { color: var(--ouro); }
+.tema-jornada .dica-extra { font-style: italic; font-size: 1.15rem; border-top-color: #2b3a55; }
+.tema-jornada ::selection { background: var(--ouro); color: var(--fundo); }
+
+/* ---------- tela final ---------- */
+.tema-jornada.final main { max-width: 680px; }
+.tema-jornada .palavra {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(4px, 1.5vw, 10px);
+  margin: 0.5rem 0 2rem;
+}
+.tema-jornada .palavra span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 8vw, 3.2rem);
+  color: var(--ouro);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: surgir 0.6s forwards;
+  text-shadow: 0 0 22px rgba(217, 180, 95, 0.45);
+}
+.tema-jornada .palavra small {
+  font-family: var(--fonte);
+  font-weight: 500;
+  font-size: clamp(0.55rem, 2vw, 0.75rem);
+  color: var(--texto-fraco);
+  letter-spacing: 0.05em;
+  text-shadow: none;
+}
+@keyframes surgir { to { opacity: 1; transform: none; } }
+
+.tema-jornada .definicao {
+  font-size: 1.35rem;
+  font-style: italic;
+  margin: 0 0 1.6rem;
+}
+.tema-jornada .texto-final { font-size: 1.25rem; line-height: 1.6; margin: 0 0 1.4rem; }
+.tema-jornada .recompensa {
+  font-family: var(--fonte-titulo);
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  color: var(--fundo);
+  background: var(--ouro);
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 3px;
+  margin-top: 0.6rem;
+}
+#confete { position: fixed; inset: 0; pointer-events: none; }

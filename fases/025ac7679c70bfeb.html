@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O imperador curioso</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/temas/imperio.css">
+  <script src="../js/arg.js"></script>
+  <script type="application/json" id="arg-extra">
+    {
+      "apelidos": {
+        "ef6ab1356dd01ff2": "1b1484e39d14391f",
+        "e38b187694abb1c9": "1b1484e39d14391f"
+      },
+      "quase": {
+        "4b88d4ba151906ec": "Esse é o prédio. Em que cidade ele fica?",
+        "8338b2c928ef2cd8": "Esse é o prédio. Em que cidade ele fica?",
+        "359af532f336dec6": "Ele subia a serra justamente pra fugir do Rio. Mais longe.",
+        "2dd4667824110da1": "Ele subia a serra justamente pra fugir do Rio. Mais longe.",
+        "45629e2418d2ba76": "Você já sabe quem tirou a foto. Agora descubra onde.",
+        "20853df85c4a9cf9": "Você já sabe quem tirou a foto. Agora descubra onde.",
+        "1f08c582a289743c": "Você já sabe quem tirou a foto. Agora descubra onde."
+      }
+    }
+  </script>
+</head>
+<body data-fase="9" class="tema-imperio">
+  <main>
+    <svg class="ornamento" viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M20 30 H62 M118 30 H160" />
+      <path d="M8 30 Q14 22 20 30 Q14 38 8 30 Z M172 30 Q166 22 160 30 Q166 38 172 30 Z" fill="currentColor"/>
+      <rect x="70" y="40" width="40" height="7" rx="1" />
+      <path d="M70 40 Q68 22 76 16 Q82 26 90 12 Q98 26 104 16 Q112 22 110 40" />
+      <path d="M90 12 V4 M86 7 H94" />
+      <circle cx="76" cy="16" r="2" fill="currentColor"/><circle cx="104" cy="16" r="2" fill="currentColor"/>
+    </svg>
+
+    <div class="fase-num">FASE IX</div>
+    <h1 class="titulo">O imperador curioso</h1>
+
+    <p class="dica digitar">Dom Pedro II era louco por invenções. Em 1876 encostou o ouvido no telefone. E aos 14 anos já tinha uma das primeiras câmeras fotográficas do Brasil. Esta foto é do arquivo particular dele.</p>
+
+    <div class="estojo">
+      <div class="veludo">
+        <div class="moldura">
+          <img src="../img/arquivo-1862.jpg" alt="Fotografia antiga em sépia de um palácio de dois andares" width="1200" height="860">
+        </div>
+      </div>
+    </div>
+    <a class="baixar" href="../img/arquivo-1862.jpg" download>guardar a foto</a>
+
+    <p class="nota">Uma foto mostra o que a câmera viu. Mas o arquivo de uma foto guarda mais coisa: quem tirou, quando e onde. Nada disso aparece na imagem.</p>
+
+    <p class="pergunta">Em que cidade esta foto foi tirada?</p>
+
+    <form id="form-resposta" autocomplete="off">
+      <input type="text" placeholder="resposta" aria-label="Resposta">
+      <button type="submit">enviar</button>
+    </form>
+    <p id="mensagem" class="mensagem"></p>
+
+    <p class="dica-extra" data-erros="3" hidden>Guarde a foto no computador. Clique nela com o botão direito → Propriedades → Detalhes.</p>
+    <p class="dica-extra" data-erros="6" hidden>Achou números de latitude e longitude? Você já usou números assim na primeira fase.</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Persistir</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/temas/jornada.css">
+  <script src="../js/arg.js"></script>
+</head>
+<body data-fase="final" class="tema-jornada final">
+  <canvas id="confete" aria-hidden="true"></canvas>
+  <main>
+    <div class="fase-num">FIM DA JORNADA</div>
+
+    <div class="palavra" aria-label="PERSISTIR">
+      <span style="animation-delay:.2s">P<small>Roma</small></span>
+      <span style="animation-delay:.45s">E<small>César</small></span>
+      <span style="animation-delay:.7s">R<small>Leonardo</small></span>
+      <span style="animation-delay:.95s">S<small>Sherlock</small></span>
+      <span style="animation-delay:1.2s">I<small>Enigma</small></span>
+      <span style="animation-delay:1.45s">S<small>Bletchley</small></span>
+      <span style="animation-delay:1.7s">T<small>Turing</small></span>
+      <span style="animation-delay:1.95s">I<small>Morse</small></span>
+      <span style="animation-delay:2.2s">R<small>D. Pedro II</small></span>
+    </div>
+
+    <p class="definicao">persistir: continuar tentando, mesmo quando fica difícil.</p>
+
+    <p class="texto-final">César, Leonardo, Turing, Morse, Dom Pedro... nenhum deles acertou tudo de primeira. Você também não precisou acertar de primeira. Só precisou não parar.</p>
+
+    <p class="texto-final">E repara no que você aprendeu no caminho: ler coordenadas, quebrar cifras, olhar o código de um site, ouvir Morse, ler os segredos de uma foto e perguntar pra quem sabe. Isso tudo é pesquisar de verdade.</p>
+
+    <div class="recompensa">Mostre esta tela pro seu tio e peça sua recompensa.</div>
+  </main>
+
+  <script>
+    // Confete dourado
+    (function () {
+      const c = document.getElementById("confete");
+      const ctx = c.getContext("2d");
+      let W, H;
+      function tamanho() { W = c.width = innerWidth; H = c.height = innerHeight; }
+      tamanho(); addEventListener("resize", tamanho);
+      const cores = ["#d9b45f", "#f1d68a", "#ece3cc", "#8fb3d9", "#c9584a"];
+      const pecas = Array.from({ length: 140 }, () => ({
+        x: Math.random() * W, y: -20 - Math.random() * H,
+        v: 1.2 + Math.random() * 2.2, g: Math.random() * Math.PI * 2,
+        w: 5 + Math.random() * 6, h: 8 + Math.random() * 8,
+        cor: cores[(Math.random() * cores.length) | 0],
+      }));
+      const inicio = performance.now();
+      function quadro(t) {
+        ctx.clearRect(0, 0, W, H);
+        const ativo = t - inicio < 9000;
+        let vivas = 0;
+        for (const p of pecas) {
+          p.y += p.v; p.g += 0.05; p.x += Math.sin(p.g) * 0.8;
+          if (p.y > H + 20 && ativo) { p.y = -20; p.x = Math.random() * W; }
+          if (p.y <= H + 20) vivas++;
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.g);
+          ctx.fillStyle = p.cor; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.g)));
+          ctx.restore();
+        }
+        if (vivas) requestAnimationFrame(quadro);
+      }
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) requestAnimationFrame(quadro);
+    })();
+  </script>
+</body>
+</html>

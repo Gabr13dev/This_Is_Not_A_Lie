@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O verso da página</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/temas/diario.css">
+  <script src="../js/arg.js"></script>
+  <script type="application/json" id="arg-extra">
+    {
+      "apelidos": {
+        "96d81b1501b35f2e": "8385dd81e5b56eb4",
+        "d3b5b60691d9652b": "8385dd81e5b56eb4"
+      }
+    }
+  </script>
+</head>
+<body data-fase="7" class="tema-diario">
+  <main>
+    <div class="fase-num">FASE VII</div>
+    <h1 class="titulo">O verso da página</h1>
+
+    <p class="dica digitar">Esta página do diário parece em branco. Mas um bom explorador sempre olha o verso.</p>
+
+    <div class="diario">
+      <div class="fitinha" aria-hidden="true"></div>
+      <div class="pagina" id="pagina">
+        <div class="face">
+          <!-- O homem mais importante de Bletchley também dá nome a um teste que diz se uma máquina consegue se passar por humano. -->
+          <span class="marca" aria-hidden="true">T</span>
+          <span class="num-pagina">— 7 —</span>
+        </div>
+        <div class="face verso-falso">
+          <p>Não é esse verso.</p>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="virar" id="virar">virar a página ↻</button>
+
+    <form id="form-resposta" autocomplete="off">
+      <input type="text" placeholder="resposta" autofocus aria-label="Resposta">
+      <button type="submit">enviar</button>
+    </form>
+    <p id="mensagem" class="mensagem"></p>
+
+    <p class="dica-extra" data-erros="3" hidden>Toda página da internet tem um "verso". Pesquise como ver o código de um site.</p>
+  </main>
+
+  <script>
+    document.getElementById("virar").addEventListener("click", () => {
+      document.getElementById("pagina").classList.toggle("virada");
+    });
+  </script>
+</body>
+</html>

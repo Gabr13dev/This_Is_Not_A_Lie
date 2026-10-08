@@ -1,0 +1,128 @@
+/* Tema: Brasil Imperial — veludo verde, ouro, estojo de daguerreótipo */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap");
+
+body.tema-imperio {
+  --fundo: #0f2a1d;
+  --texto: #efe4c8;
+  --texto-fraco: #a9b79a;
+  --erro: #ffab8f;
+  --ouro: #d4b05a;
+  --ouro-escuro: #8f6f2a;
+  --veludo: #6d1420;
+  --fonte: "Cormorant Garamond", Georgia, serif;
+  --fonte-titulo: "Playfair Display", Georgia, serif;
+
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(212, 176, 90, 0.18), transparent 55%),
+    radial-gradient(circle at 50% 50%, #164030 0%, var(--fundo) 75%);
+  text-shadow: none;
+}
+body.tema-imperio::before { display: none; }
+
+.tema-imperio main { max-width: 720px; }
+
+.tema-imperio .ornamento {
+  display: block;
+  width: 180px;
+  margin: 0 auto 0.6rem;
+  color: var(--ouro);
+}
+.tema-imperio .fase-num {
+  font-family: var(--fonte);
+  color: var(--ouro);
+  letter-spacing: 0.5em;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+.tema-imperio .titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 7vw, 2.6rem);
+  color: var(--ouro);
+  margin: 0 0 1.2rem;
+}
+.tema-imperio .dica {
+  font-size: 1.3rem;
+  line-height: 1.55;
+  margin: 0 0 2rem;
+}
+
+/* estojo de daguerreótipo */
+.tema-imperio .estojo {
+  background: linear-gradient(160deg, #3b2316, #24150d);
+  border-radius: 10px;
+  padding: 14px;
+  margin: 0 auto 0.8rem;
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+.tema-imperio .veludo {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.06), transparent 70%),
+    repeating-linear-gradient(45deg, rgba(0,0,0,0.12) 0 2px, transparent 2px 6px),
+    var(--veludo);
+  border-radius: 6px;
+  padding: clamp(12px, 3vw, 22px);
+}
+.tema-imperio .moldura {
+  background: linear-gradient(135deg, #f1d68a, var(--ouro) 35%, var(--ouro-escuro) 70%, #e9c977);
+  padding: clamp(8px, 2vw, 14px);
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px rgba(80, 55, 10, 0.6), 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+.tema-imperio .moldura img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 40px / 30px;
+  box-shadow: 0 0 0 3px rgba(80, 55, 10, 0.55), inset 0 0 20px rgba(0,0,0,0.6);
+}
+
+.tema-imperio .baixar {
+  display: inline-block;
+  font-family: var(--fonte);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--texto-fraco);
+  margin-bottom: 1.8rem;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--texto-fraco);
+}
+.tema-imperio .baixar:hover { color: var(--ouro); border-bottom-color: var(--ouro); }
+
+.tema-imperio .nota {
+  font-size: 1.2rem;
+  line-height: 1.55;
+  font-style: italic;
+  color: var(--texto);
+  border-top: 1px solid rgba(212, 176, 90, 0.35);
+  border-bottom: 1px solid rgba(212, 176, 90, 0.35);
+  padding: 14px 6px;
+  margin: 0 0 1.6rem;
+}
+
+.tema-imperio .pergunta { font-family: var(--fonte-titulo); font-style: italic; font-size: 1.3rem; margin: 0 0 1.2rem; }
+
+.tema-imperio input {
+  font-family: var(--fonte);
+  font-size: 1.3rem;
+  border: none;
+  border-bottom: 2px solid var(--texto-fraco);
+  background: transparent;
+  color: var(--texto);
+  text-align: center;
+}
+.tema-imperio input:focus { border-bottom-color: var(--ouro); box-shadow: none; }
+.tema-imperio input::placeholder { color: var(--texto-fraco); }
+
+.tema-imperio button {
+  font-family: var(--fonte);
+  font-size: 1.15rem;
+  border: 1px solid var(--ouro);
+  color: var(--ouro);
+}
+.tema-imperio button:hover { background: var(--ouro); color: var(--fundo); }
+
+.tema-imperio .mensagem { font-family: var(--fonte); font-size: 1.25rem; }
+.tema-imperio .mensagem.certo, .tema-imperio .mensagem.quase { color: var(--ouro); }
+.tema-imperio .dica-extra { font-style: italic; font-size: 1.15rem; border-top-color: #2c5241; }
+.tema-imperio ::selection { background: var(--ouro); color: var(--fundo); }

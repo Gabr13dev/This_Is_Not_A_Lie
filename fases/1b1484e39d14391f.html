@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A última página</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/temas/jornada.css">
+  <script src="../js/arg.js"></script>
+  <script type="application/json" id="arg-extra">
+    {
+      "quase": {
+        "3602a111bf5705f3": "Quase! Use só as letras que você encontrou.",
+        "df0446d308b7774f": "Faltam letras. Foram nove fases.",
+        "a4e8ec4482b1af0e": "Quase! Confira as últimas letras.",
+        "cdcc0955f227bf0a": "Quase! Confira as últimas letras."
+      }
+    }
+  </script>
+</head>
+<body data-fase="10" class="tema-jornada">
+  <main>
+    <div class="fase-num">FASE X</div>
+    <h1 class="titulo">A última página</h1>
+
+    <p class="dica digitar">Você seguiu um imperador romano, um gênio italiano, um detetive que nunca existiu, decifradores de guerra, um pintor que falava em pontos e um imperador brasileiro. Nenhum deles chegou onde chegou de primeira.</p>
+
+    <div class="mapa">
+      <nav class="selos" aria-label="Páginas da jornada">
+        <a class="selo" href="../index.html"><div class="num">I</div><div class="lugar">ROMA</div><div class="quem">o Coliseu</div></a>
+        <a class="selo" href="eece46eda6f69849.html"><div class="num">II</div><div class="lugar">ROMA</div><div class="quem">Júlio César</div></a>
+        <a class="selo" href="2e1c149d4cafd7ba.html"><div class="num">III</div><div class="lugar">VINCI</div><div class="quem">Leonardo</div></a>
+        <a class="selo" href="d2e779cabe4b70c3.html"><div class="num">IV</div><div class="lugar">LONDRES</div><div class="quem">Sherlock Holmes</div></a>
+        <a class="selo" href="c763df2c79d49651.html"><div class="num">V</div><div class="lugar">A GUERRA</div><div class="quem">a Enigma</div></a>
+        <a class="selo" href="9225802037107162.html"><div class="num">VI</div><div class="lugar">BLETCHLEY</div><div class="quem">a mansão</div></a>
+        <a class="selo" href="6ef8deb69e09484b.html"><div class="num">VII</div><div class="lugar">O DIÁRIO</div><div class="quem">Alan Turing</div></a>
+        <a class="selo" href="8385dd81e5b56eb4.html"><div class="num">VIII</div><div class="lugar">O FIO</div><div class="quem">Samuel Morse</div></a>
+        <a class="selo" href="025ac7679c70bfeb.html"><div class="num">IX</div><div class="lugar">A SERRA</div><div class="quem">Dom Pedro II</div></a>
+      </nav>
+    </div>
+
+    <p class="dica">Roma não foi construída em um dia. Se você anotou tudo, a última palavra já está com você.</p>
+
+    <div class="espacos" id="espacos" aria-hidden="true"></div>
+
+    <form id="form-resposta" autocomplete="off">
+      <input type="text" placeholder="a última palavra" maxlength="20" aria-label="Resposta">
+      <button type="submit">ENVIAR</button>
+    </form>
+    <p id="mensagem" class="mensagem"></p>
+
+    <p class="dica-extra" data-erros="3" hidden>Volte nas páginas. Cada uma tinha uma letra diferente das outras.</p>
+  </main>
+
+  <script>
+    // Nove espaços que vão se preenchendo enquanto ele digita
+    (function () {
+      const caixa = document.getElementById("espacos");
+      const espacos = Array.from({ length: 9 }, () => {
+        const el = document.createElement("div");
+        el.className = "espaco";
+        caixa.appendChild(el);
+        return el;
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        const input = document.querySelector("#form-resposta input");
+        input.addEventListener("input", () => {
+          const letras = input.value.normalize("NFD").replace(/[̀-ͯ]/g, "")
+            .toUpperCase().replace(/[^A-Z]/g, "");
+          espacos.forEach((el, i) => (el.textContent = letras[i] || ""));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
